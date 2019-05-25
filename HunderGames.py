@@ -179,7 +179,7 @@ class Screen():
 		middle_label = Label(window, text=self.middle_message, width=root.winfo_screenwidth())
 		bottom_label = Label(window, text=self.bottom_message, width=root.winfo_screenwidth())
 		top_label.config(font=("Courier", 36, "bold"))
-		middle_label.config(font=("Courier", 52, "bold"))
+		middle_label.config(font=("Courier", 150, "bold"))
 		bottom_label.config(font=("Courier", 36, "bold"))
 		top_label.pack(expand=True)
 		middle_label.pack(expand=True)
