@@ -169,19 +169,20 @@ class Screen():
 				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 				master.bind("<Escape>", app.unfullscreen)
 
+				top_label = Label(app, text="Hey")
+				middle_label = Label(app, text="Ho")
+				bottom_label = Label(app, text="Heyyy")
+				top_label.pack()
+				middle_label.pack()
+				bottom_label.pack()
+
 			def unfullscreen(app, event):
 				app.geometry(app.fallback_geometry)
 
 		root = Tk()
 		window = HunderGamesWindow(master=root)
 
-		top_label = Label(window, text="Hey")
-		middle_label = Label(window, text="Ho")
-		bottom_label = Label(window, text="Heyyy")
 
-		top_label.pack()
-		middle_label.pack()
-		bottom_label.pack()
 
 		window.mainloop()
 
