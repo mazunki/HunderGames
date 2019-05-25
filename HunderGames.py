@@ -12,6 +12,7 @@ BOOTUP_HIGHSCORE = -1
 GAME_DURATION = 60
 GAME_OVER_SCORE_DURATION = 3
 GAME_OVER_RESULT_DURATION = 3
+DELAY_GET_READY = 1.5 # seconds
 
 
 # User display
@@ -43,22 +44,22 @@ class Screen():
 				self.top_message = "Get ready!"
 				self.middle_message = "3"
 				self.bottom_message = ""
-				sleep(1)
+				sleep(DELAY_GET_READY)
 
 				self.top_message = "Press the buttons"
 				self.middle_message = "2"
 				self.bottom_message = "as they're lit"
-				sleep(1)
+				sleep(DELAY_GET_READY)
 
 				self.top_message = "And don't hit"
 				self.middle_message = "1"
 				self.bottom_message = "wrong ones!"
-				sleep(1)
+				sleep(DELAY_GET_READY)
 
 				self.top_message = "Go!"
 				self.middle_message = "0"
 				self.bottom_message = ""
-				sleep(0.2)
+				sleep(DELAY_GET_READY/2)
 
 				mode = GAME_MODE
 
@@ -66,7 +67,14 @@ class Screen():
 				global smashers
 				self.current_score = 0
 				self.time_left = GAME_DURATION
+				def metronome():
+					while True:
+						self.current_score -= 1
+						sleep(1)
+				counter = threading.Thread(target=metronome)
+				counter.daemon = True
 				while mode == GAME_MODE:
+					counter.start()
 					self.top_message = "Score"
 					self.middle_message = self.current_score
 					self.bottom_message  = str(self.time_left)+"s left"
