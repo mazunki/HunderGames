@@ -4,6 +4,10 @@ from random import randint
 import signal
 
 def close_program(signal, frame):
+	global smashers
+	for smasher in smashers:
+		smasher.dark()
+	sleep(2)
 	GPIO.cleanup()
 	exit()
 signal.signal(signal.SIGINT, close_program)
