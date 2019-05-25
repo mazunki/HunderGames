@@ -164,6 +164,7 @@ class Screen():
 	def print_to_screen(self):
 		class HunderGamesWindow(Frame):
 			def __init__(app, master):
+				Frame.__init__(app, master)
 				app.master = master
 				app.fallback_geometry = "480x260"
 				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
