@@ -173,7 +173,7 @@ class Screen():
 				root.attributes("-fullscreen", True)
 
 			def unfullscreen(app, event):
-				app.geometry(app.fallback_geometry)
+				app.master.geometry(app.fallback_geometry)
 				root.attributes("-fullscreen", False)
 
 		root = Tk()
@@ -199,9 +199,9 @@ class Screen():
 				self.top_message_holder.set(self.top_message)
 				self.middle_message_holder.set(self.middle_message)
 				if mode in [GAME_OVER_MODE]:
-					self.middle_label.config(font=("Courier", 36, "bold"))
+					middle_label.config(font=("Courier", 36, "bold"))
 				else:
-					self.middle_label.config(font=("Courier", 150, "bold"))	
+					middle_label.config(font=("Courier", 150, "bold"))	
 				self.bottom_message_holder.set(self.bottom_message)
 		updater = threading.Thread(target=update_labels)
 		updater.daemon = True
