@@ -92,7 +92,10 @@ class Screen():
 							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
 								self.current_score += 1
 								found_target = True
-								break
+								while smasher.pressed_status():
+									pass
+								else:
+									break
 							elif smasher.pressed_status():
 								while smasher.pressed_status():
 									pass
