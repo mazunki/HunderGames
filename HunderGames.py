@@ -41,13 +41,13 @@ for pair in BCM_PAIRS:
 
 frame = 0
 while True:
-		for smasher in smashers:
-			print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
-			if index(smasher) == frame:
-				smasher.light()
-			else:
-				smasher.dark()
-			print()
+	for smasher in smashers:
+		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
+		if index(smasher) == frame:
+			smasher.light()
+		else:
+			smasher.dark()
+		print()
 	frame = (frame+1)%len(smashers)
 
 	print()
