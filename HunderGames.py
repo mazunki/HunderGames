@@ -181,9 +181,9 @@ class Screen():
 		middle_message_holder = StringVar()
 		bottom_message_holder = StringVar()
 
-		top_label = Label(window, text_variable=top_message_holder, width=root.winfo_screenwidth())
-		middle_label = Label(window, text_variable=middle_message_holder, width=root.winfo_screenwidth())
-		bottom_label = Label(window, text_variable=bottom_message_holder, width=root.winfo_screenwidth())
+		top_label = Label(window, textvariable=top_message_holder, width=root.winfo_screenwidth())
+		middle_label = Label(window, textvariable=middle_message_holder, width=root.winfo_screenwidth())
+		bottom_label = Label(window, textvariable=bottom_message_holder, width=root.winfo_screenwidth())
 		top_label.config(font=("Courier", 36, "bold"), fg="white", bg="black")
 		middle_label.config(font=("Courier", 150, "bold"), fg="white", bg="black")
 		bottom_label.config(font=("Courier", 36, "bold"), fg="white", bg="black")
