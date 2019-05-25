@@ -167,7 +167,7 @@ class Screen():
 				app.master = master
 				app.fallback_geometry = "480x260"
 				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
-				master.bind("<Escape>", unfullscreen)
+				master.bind("<Escape>", app.unfullscreen)
 
 			def unfullscreen(app, event):
 				app.geometry(app.fallback_geometry)
