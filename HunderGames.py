@@ -181,10 +181,10 @@ class Screen():
 		top_label.pack()
 		middle_label.pack()
 		bottom_label.pack()
-		mainloop()
+		window.mainloop()
 
 
-		while True:
+		while False:
 			print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
 				self.top_message,
 				self.middle_message,
