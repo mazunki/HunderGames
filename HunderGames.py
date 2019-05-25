@@ -54,6 +54,8 @@ class Screen():
 					if mode == IDLE_MODE:
 						sleep(1)
 					else:
+						for smasher in smashers:
+							smasher.dark()
 						break
 
 			elif mode == GET_READY_MODE:
