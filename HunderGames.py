@@ -104,10 +104,7 @@ class Screen():
 				sleep(GAME_OVER_RESULT_DURATION)
 				mode = IDLE_MODE
 
-			print(f"\
-{self.top_message:^16}\n\
-{self.middle_message:^16}\n\
-{self.bottom_message:^16}")
+			print(f"{self.top_message:^16}\n{self.middle_message:^16}\n{self.bottom_message:^16}")
 
 screen = Screen()
 
