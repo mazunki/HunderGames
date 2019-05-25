@@ -83,7 +83,7 @@ class Screen():
 							elif smasher.pressed_status():
 								self.current_score -= 1
 
-					if time_left < 0:
+					if self.time_left < 0:
 						mode = GAME_OVER_MODE
 
 			elif mode == GAME_OVER_MODE:
