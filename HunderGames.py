@@ -183,6 +183,8 @@ class Screen():
 		middle_label.pack()
 		bottom_label.pack()
 
+		window.mainloop()
+
 
 		while True:
 			print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
