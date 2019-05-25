@@ -4,11 +4,14 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 
 led1 = GPIO.setup(2, GPIO.OUT)
-button1 = GPIO.setup(14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+all_leds = [14, 15, 18, 23, 24, 25, 8, 7]
+for led in all_leds:
+	GPIO.setup(led, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 while True:
-	if GPIO.input(14):
-		print("HIGH")
-	else:
-		print("LOW")
+	for led in all_leds:
+		if GPIO.input(led):
+			print(led, "HIGH")
+		else:
+			print(led, "LOW")
 	sleep(1)
