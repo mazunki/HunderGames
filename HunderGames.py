@@ -175,9 +175,9 @@ class Screen():
 
 		root = Tk()
 		window = HunderGamesWindow(master=root).pack()
-		top_label = Label(window, text=self.top_message, fill="X", width=root.winfo_screenwidth())
-		middle_label = Label(window, text=self.middle_message, fill="X", width=root.winfo_screenwidth())
-		bottom_label = Label(window, text=self.bottom_message, fill="X", width=root.winfo_screenwidth())
+		top_label = Label(window, text=self.top_message, width=root.winfo_screenwidth())
+		middle_label = Label(window, text=self.middle_message, width=root.winfo_screenwidth())
+		bottom_label = Label(window, text=self.bottom_message, width=root.winfo_screenwidth())
 		top_label.config(font=("Courier", 24))
 		middle_label.config(font=("Courier", 24))
 		bottom_label.config(font=("Courier", 24))
