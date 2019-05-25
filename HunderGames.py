@@ -94,8 +94,10 @@ class Screen():
 								found_target = True
 								break
 							elif smasher.pressed_status():
-								self.current_score -= 1
-								print(self.current_score)
+								while smasher.pressed_status():
+									pass
+								else:
+									self.current_score -= 1
 								continue
 
 					if self.time_left < 0:
