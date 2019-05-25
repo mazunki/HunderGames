@@ -37,6 +37,6 @@ for pair in BCM_PAIRS:
 
 while True:
 	for smasher in smashers:
-		print(smasher.button, smasher.status(), ",", smasher.led, smasher.lit)
+		print(smasher.button, smasher.pressed_status(), ",", smasher.led, smasher.lit)
 	print()
 	sleep(1)
