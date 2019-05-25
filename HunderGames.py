@@ -118,11 +118,12 @@ class Screen():
 				mode = IDLE_MODE
 
 	def print_to_screen(self):
-		print("{:^16}\n{:^16}\n{:^16}".format(
-			self.top_message,
-			self.middle_message,
-			self.bottom_message))
-		sleep(0.2)
+		while True:
+			print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
+				self.top_message,
+				self.middle_message,
+				self.bottom_message))
+			sleep(0.2)
 
 screen = Screen()
 
