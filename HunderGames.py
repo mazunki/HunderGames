@@ -87,23 +87,16 @@ class Screen():
 							smasher.dark()
 
 					found_target = False
-					while not found_target and self.time_left >= 0:
+					while self.time_left >= 0 and found_target == False:
 						for smasher in smashers:
-							if not found_target:
-								if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
-									self.current_score += 1
-									found_target = True
-									while smasher.pressed_status():
-										pass
-									else:
-										sleep(0.2)
-										break
-								elif smasher.pressed_status() and not found_target:
-									while smasher.pressed_status():
-										pass
-									else:
-										self.current_score -= 1
-									continue
+							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
+								self.current_score += 1
+								found_target = True
+								sleep(0.5)
+								break
+							elif smashers.index(smasher) == smasher_aim and smasher.pressed_status():
+								self.current_score -= 1
+								sleep(0.5)
 
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
