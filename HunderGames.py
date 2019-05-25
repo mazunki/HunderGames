@@ -145,6 +145,7 @@ class LightButton():
 	def light(self):
 		GPIO.output(self.led, GPIO.HIGH)
 		self.lit = True
+	def dark(self):
 		GPIO.output(self.led, GPIO.LOW)
 		self.lit = False
 
