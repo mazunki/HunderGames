@@ -104,7 +104,7 @@ class Screen():
 				sleep(GAME_OVER_RESULT_DURATION)
 				mode = IDLE_MODE
 
-			print("{^16}\n{^16}\n{^16}".format(self.top_message, self.middle_message, self.bottom_message))
+			print("{:^16}\n{:^16}\n{:^16}".format(self.top_message, self.middle_message, self.bottom_message))
 
 screen = Screen()
 
