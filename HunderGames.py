@@ -6,11 +6,13 @@ IDLE_MODE = 0
 GET_READY_MODE = 1
 GAME_MODE = 2
 GAME_OVER_MODE = 3
+mode = IDLE_MODE
 
 BOOTUP_HIGHSCORE = -1
 GAME_DURATION = 60
 GAME_OVER_SCORE_DURATION = 3
 GAME_OVER_RESULT_DURATION = 3
+
 
 # User display
 class Screen():
@@ -112,7 +114,12 @@ class Screen():
 				sleep(GAME_OVER_RESULT_DURATION)
 				mode = IDLE_MODE
 
-			print("{:^16}\n{:^16}\n{:^16}".format(self.top_message, self.middle_message, self.bottom_message))
+		def print_to_screen():
+			print("{:^16}\n{:^16}\n{:^16}".format(
+				self.top_message,
+				self.middle_message,
+				self.bottom_message))
+			sleep(0.2)
 
 screen = Screen()
 
@@ -182,4 +189,9 @@ def idle_modus():
 		sleep(0.2)
 
 if __name__ == '__main__':
+	import threading
+	printer = Thread(target=screen.print_to_screen)
+	printer.daemon = True
+	printer.start()
+
 	idle_modus()
