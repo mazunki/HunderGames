@@ -43,7 +43,11 @@ for pair in BCM_PAIRS:
 frame = 0
 while True:
 	for smasher in smashers:
-		if smashers.index(smasher) == frame:
+		# if smashers.index(smasher) == frame:
+		# 	smasher.light()
+		# else:
+		# 	smasher.dark()
+		if smasher.pressed_status():
 			smasher.light()
 		else:
 			smasher.dark()
