@@ -1,6 +1,12 @@
 import RPi.GPIO as GPIO
 from time import sleep
 from random import randint
+import signal
+
+def close_program(signal, frame):
+	GPIO.cleanup()
+	exit()
+signal.signal(signal.SIGINT, close_program)
 
 IDLE_MODE = 0
 GET_READY_MODE = 1
