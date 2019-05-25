@@ -174,6 +174,7 @@ class Screen():
 
 			def unfullscreen(app, event):
 				app.geometry(app.fallback_geometry)
+				root.attributes("-fullscreen", False)
 
 		root = Tk()
 		window = HunderGamesWindow(master=root).pack()
