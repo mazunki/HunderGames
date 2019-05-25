@@ -24,7 +24,11 @@ class LightButton():
 		self.lit = False
 
 	def light(self):
-		pass
+		GPIO.output(self.led, GPIO.HIGH)
+		self.lit = True
+	def dark(self):
+		GPIO.output(self.led, GPIO.LOW)
+		self.lit = False
 
 	def pressed_status(self):
 		return GPIO.input(self.led)
@@ -38,5 +42,7 @@ for pair in BCM_PAIRS:
 while True:
 	for smasher in smashers:
 		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
+		print()
+
 	print()
 	sleep(1)
