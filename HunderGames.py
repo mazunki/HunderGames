@@ -25,6 +25,7 @@ class Screen():
 				self.top_message = "Highscore"
 				self.middle_message = self.highscore
 				self.bottom_message = "Press a button to play!"
+				sleep(1)
 
 			elif mode == GET_READY_MODE:
 				self.top_message = "Get ready!"
