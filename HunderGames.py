@@ -97,7 +97,7 @@ class Screen():
 										pass
 									else:
 										break
-								elif smasher.pressed_status():
+								elif smasher.pressed_status() and not found_target:
 									while smasher.pressed_status():
 										pass
 									else:
