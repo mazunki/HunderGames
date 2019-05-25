@@ -43,7 +43,7 @@ frame = 0
 while True:
 	for smasher in smashers:
 		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
-		if index(smasher) == frame:
+		if smashers.index(smasher) == frame:
 			smasher.light()
 		else:
 			smasher.dark()
