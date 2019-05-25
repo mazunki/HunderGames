@@ -42,6 +42,8 @@ class Screen():
 			if mode == IDLE_MODE:
 				self.top_message = "Highscore"
 				self.middle_message = self.highscore
+				if self.middle_message == -1:
+					self.middle_message = "Empty!"
 				self.bottom_message = "Press a button to play!"
 
 				frame = 0
