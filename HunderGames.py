@@ -18,14 +18,21 @@ class Screen():
 		self.highscore = BOOTUP_HIGHSCORE
 
 	def update_mode(self):
-		global mode
+		global mode, smashers
 
 		while True:
 			if mode == IDLE_MODE:
 				self.top_message = "Highscore"
 				self.middle_message = self.highscore
 				self.bottom_message = "Press a button to play!"
-				sleep(1)
+
+				for smasher in smashers:
+					if smasher.pressed_status()
+						mode = GET_READY_MODE
+						break
+
+				if mode == IDLE_MODE:
+					sleep(1)
 
 			elif mode == GET_READY_MODE:
 				self.top_message = "Get ready!"
