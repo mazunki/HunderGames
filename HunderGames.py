@@ -170,7 +170,6 @@ class Screen():
 				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 				master.bind("<Escape>", app.unfullscreen)
 
-
 			def unfullscreen(app, event):
 				app.geometry(app.fallback_geometry)
 
@@ -182,7 +181,7 @@ class Screen():
 		top_label.pack()
 		middle_label.pack()
 		bottom_label.pack()
-		window.mainloop()
+		mainloop()
 
 
 		while True:
