@@ -190,7 +190,7 @@ def idle_modus():
 
 if __name__ == '__main__':
 	import threading
-	printer = Thread(target=screen.print_to_screen)
+	printer = threading.Thread(target=screen.print_to_screen)
 	printer.daemon = True
 	printer.start()
 
