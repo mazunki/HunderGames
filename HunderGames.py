@@ -5,12 +5,12 @@ GPIO.setmode(GPIO.BCM)
 BCM_PAIRS = [	
 				(25,27),  # top
 				(8,10),   # blue
-				(7,9)     # right
+				(7,9),     # right
 				(14,2),   # green
 				(15,3),   # bottom
 				(18,4),   # yellow
 				(23,17),  # left
-				(24,22),  # red 
+				(24,22)  # red 
 			] # (led, button) BCM GPIO
 
 
