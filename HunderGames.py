@@ -19,7 +19,7 @@ class LightButton():
 		self.button = bcm_button
 
 		GPIO.setup(self.led, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-		GPIO.setup(self.button, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
+		GPIO.setup(self.button, GPIO.OUT)
 
 		self.lit = False
 
