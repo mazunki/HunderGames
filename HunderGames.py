@@ -181,6 +181,7 @@ class Screen():
 		top_label.grid()
 		middle_label.grid()
 		bottom_label.grid()
+		window.update()
 		window.mainloop()
 
 
