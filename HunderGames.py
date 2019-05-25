@@ -8,7 +8,7 @@ def close_program(signal, frame):
 	for smasher in smashers:
 		smasher.dark()
 	sleep(2)
-	GPIO.cleanup()
+	#GPIO.cleanup()
 	exit()
 signal.signal(signal.SIGINT, close_program)
 
