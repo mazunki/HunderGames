@@ -23,10 +23,10 @@ class LightButton():
 
 		self.lit = False
 
-	def light():
+	def light(self):
 		pass
 
-	def pressed_status():
+	def pressed_status(self):
 		return GPIO.input(self.led)
 
 
