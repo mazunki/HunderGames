@@ -197,7 +197,7 @@ class Screen():
 			self.top_message_holder.set(self.top_message)
 			self.middle_message_holder.set(self.middle_message)
 			self.bottom_message_holder.set(self.bottom_message)
-			root.update()
+			root.update_idletasks()
 			sleep(0.2)
 
 
