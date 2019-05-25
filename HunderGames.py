@@ -2,16 +2,41 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
+BCM_PAIRS = [	(14,2),   # green
+				(15,3),   # bottom
+				(18,4),   # yellow
+				(23,17),  # left
+				(24,22),  # red 
+				(25,27),  # top
+				(8,10),   # blue
+				(7,9)     # right
+			] # (led, button) BCM GPIO
 
-led1 = GPIO.setup(2, GPIO.OUT)
-all_leds = [14, 15, 18, 23, 24, 25, 8, 7]
-for led in all_leds:
-	GPIO.setup(led, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+class LightButton():
+	def __init__(self, bcm_led, bcm_button):
+		self.led = bcm_led
+		self.button = bcm_button
+
+		GPIO.setup(self.led, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+		GPIO.setup(self.button, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
+
+		self.lit = False
+
+	def light():
+		pass
+
+	def pressed_status():
+		return GPIO.input(self.led)
+
+
+smashers = list()
+for pair in BCM_PAIRS:
+	logical_pair = LightButton(*pair)
+	smashers.append(logical_pair)
 
 while True:
-	for led in all_leds:
-		if GPIO.input(led):
-			print(led, "HIGH")
-		else:
-			print(led, "LOW")
+	for smasher in smashers:
+		print(smasher.button, smasher.status(), ",", smasher.led, smasher.lit)
+	print()
 	sleep(1)
