@@ -73,8 +73,8 @@ class Screen():
 						sleep(1)
 				counter = threading.Thread(target=metronome)
 				counter.daemon = True
+				counter.start()
 				while mode == GAME_MODE:
-					counter.start()
 					self.top_message = "Score"
 					self.middle_message = self.current_score
 					self.bottom_message  = str(self.time_left)+"s left"
