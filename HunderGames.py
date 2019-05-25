@@ -175,9 +175,9 @@ class Screen():
 
 		root = Tk()
 		window = HunderGamesWindow(master=root).pack()
-		top_label = Button(window, text="Hey")
-		middle_label = Button(window, text="Ho")
-		bottom_label = Button(window, text="Heyyy")
+		top_label = Label(window, text="Hey")
+		middle_label = Label(window, text="Ho")
+		bottom_label = Label(window, text="Heyyy")
 		top_label.pack()
 		middle_label.pack()
 		bottom_label.pack()
