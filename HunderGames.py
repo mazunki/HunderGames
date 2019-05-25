@@ -27,7 +27,7 @@ class Screen():
 				self.bottom_message = "Press a button to play!"
 
 				for smasher in smashers:
-					if smasher.pressed_status()
+					if smasher.pressed_status():
 						mode = GET_READY_MODE
 						break
 
