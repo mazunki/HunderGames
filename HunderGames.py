@@ -18,8 +18,8 @@ class LightButton():
 		self.led = bcm_led
 		self.button = bcm_button
 
-		GPIO.setup(self.led, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-		GPIO.setup(self.button, GPIO.OUT)
+		GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+		GPIO.setup(self.led, GPIO.OUT)
 
 		self.lit = False
 
@@ -31,7 +31,7 @@ class LightButton():
 		self.lit = False
 
 	def pressed_status(self):
-		return GPIO.input(self.led)
+		return GPIO.input(self.button)
 
 
 smashers = list()
