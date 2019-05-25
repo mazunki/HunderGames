@@ -56,4 +56,4 @@ while True:
 	frame = (frame+1)%len(smashers)
 
 	print()
-	sleep(1)
+	sleep(0.2)
