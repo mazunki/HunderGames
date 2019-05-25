@@ -201,7 +201,7 @@ class Screen():
 				if mode in [GAME_OVER_MODE]:
 					self.middle_label.config(font=("Courier", 36, "bold"))
 				else:
-					self.middle_label.config(font=("Courier", 150, "bold")	
+					self.middle_label.config(font=("Courier", 150, "bold"))	
 				self.bottom_message_holder.set(self.bottom_message)
 		updater = threading.Thread(target=update_labels)
 		updater.daemon = True
