@@ -194,11 +194,10 @@ class Screen():
 
 
 		while True:
-			#print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
-			top_message_holder = self.top_message,
-			middle_message_holder = self.middle_message,
-			bottom_message_holder = self.bottom_message
-			#))
+			top_message_holder.set(self.top_message)
+			middle_message_holder.set(self.middle_message)
+			bottom_message_holder.set(self.bottom_message)
+
 			sleep(0.2)
 
 
