@@ -151,8 +151,9 @@ for pair in BCM_PAIRS:
 
 
 def idle_modus():
-	global screen
+	global screen, mode
 
+	mode = IDLE_MODE
 	screen.update_mode()
 
 	frame = 0
