@@ -91,9 +91,6 @@ class Screen():
 				counter.daemon = True
 				counter.start()
 				while mode == GAME_MODE:
-					self.top_message = "Score"
-					self.middle_message = self.current_score
-					self.bottom_message  = str(self.time_left)+"s left"
 
 					smasher_aim = randint(0, len(smashers)-1)
 					for smasher in smashers:
@@ -104,6 +101,10 @@ class Screen():
 
 					found_target = False
 					while self.time_left >= 0 and found_target == False:
+						self.top_message = "Score"
+						self.middle_message = self.current_score
+						self.bottom_message  = str(self.time_left)+"s left"
+						
 						for smasher in smashers:
 							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
 								self.current_score += 1
@@ -115,7 +116,7 @@ class Screen():
 									pass
 								else:
 									self.current_score -= 1
-									#sleep(0.5)
+									sleep(0.3)
 
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
