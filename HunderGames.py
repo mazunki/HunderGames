@@ -110,7 +110,7 @@ class Screen():
 								found_target = True
 								sleep(0.2)
 								break
-							elif smashers.index(smasher) == smasher_aim and smasher.pressed_status():
+							elif smashers.index(smasher) != smasher_aim and smasher.pressed_status():
 								while smasher.pressed_status():
 									pass
 								else:
