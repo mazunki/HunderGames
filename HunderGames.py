@@ -74,7 +74,7 @@ class Screen():
 							smasher.dark()
 
 					found_target = False
-					while not found_target and time_left >= 0:
+					while not found_target and self.time_left >= 0:
 						for smasher in smashers:
 							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
 								self.current_score += 1
