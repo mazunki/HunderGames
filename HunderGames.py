@@ -69,7 +69,7 @@ class Screen():
 				self.time_left = GAME_DURATION
 				def metronome():
 					while True:
-						self.current_score -= 1
+						self.time_left -= 1
 						sleep(1)
 				counter = threading.Thread(target=metronome)
 				counter.daemon = True
