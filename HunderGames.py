@@ -39,11 +39,16 @@ for pair in BCM_PAIRS:
 	logical_pair = LightButton(*pair)
 	smashers.append(logical_pair)
 
+frame = 0
 while True:
-	for smasher in smashers:
-		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
-		smasher.light()
-		print()
+		for smasher in smashers:
+			print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
+			if index(smasher) == frame:
+				smasher.light()
+			else:
+				smasher.dark()
+			print()
+	frame = (frame+1)%len(smashers)
 
 	print()
 	sleep(1)
