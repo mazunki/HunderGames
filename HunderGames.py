@@ -199,7 +199,7 @@ class Screen():
 			self.bottom_message_holder.set(self.bottom_message)
 			root.update_idletasks()
 			root.update()
-			sleep(0.2)
+			
 
 
 
