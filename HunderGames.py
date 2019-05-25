@@ -79,7 +79,7 @@ class Screen():
 					self.middle_message = self.current_score
 					self.bottom_message  = str(self.time_left)+"s left"
 
-					smasher_aim = randint(0, len(smashers))
+					smasher_aim = randint(0, len(smashers)-1)
 					for smasher in smashers:
 						if smashers.index(smasher) == smasher_aim:
 							smasher.light()
