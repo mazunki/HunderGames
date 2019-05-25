@@ -174,7 +174,7 @@ class Screen():
 				app.geometry(app.fallback_geometry)
 
 		root = Tk()
-		window = HunderGamesWindow(master=root)
+		window = HunderGamesWindow(master=root).pack()
 		top_label = Button(window, text="Hey")
 		middle_label = Button(window, text="Ho")
 		bottom_label = Button(window, text="Heyyy")
@@ -182,7 +182,7 @@ class Screen():
 		middle_label.grid()
 		bottom_label.grid()
 		window.update()
-		window.mainloop()
+		root.mainloop()
 
 
 		while True:
