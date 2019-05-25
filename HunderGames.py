@@ -109,14 +109,14 @@ class Screen():
 				self.bottom_message = "total score"
 				sleep(GAME_OVER_SCORE_DURATION)
 
-				if self.score > self.highscore:
-					self.highscore = self.score
+				if self.current_score > self.highscore:
+					self.highscore = self.current_score
 
 					self.top_message = "Congratulations!"
 					self.middle_message = "New highscore: "
-					self.bottom_message = self.score
+					self.bottom_message = self.current_score
 
-				elif self.score < self.highscore:
+				elif self.current_score < self.highscore:
 					self.top_message = "Aww..."
 					self.middle_message = "better luck"
 					self.bottom_message = "next time"
