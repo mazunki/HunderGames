@@ -177,13 +177,13 @@ class Screen():
 		window = HunderGamesWindow(master=root).pack()
 		root.configure(background="black")
 
-		top_message_holder = StringVar()
-		middle_message_holder = StringVar()
-		bottom_message_holder = StringVar()
+		self.top_message_holder = StringVar()
+		self.middle_message_holder = StringVar()
+		self.bottom_message_holder = StringVar()
 
-		top_label = Label(window, textvariable=top_message_holder, width=root.winfo_screenwidth())
-		middle_label = Label(window, textvariable=middle_message_holder, width=root.winfo_screenwidth())
-		bottom_label = Label(window, textvariable=bottom_message_holder, width=root.winfo_screenwidth())
+		top_label = Label(window, textvariable=self.top_message_holder, width=root.winfo_screenwidth())
+		middle_label = Label(window, textvariable=self.middle_message_holder, width=root.winfo_screenwidth())
+		bottom_label = Label(window, textvariable=self.bottom_message_holder, width=root.winfo_screenwidth())
 		top_label.config(font=("Courier", 36, "bold"), fg="white", bg="black")
 		middle_label.config(font=("Courier", 150, "bold"), fg="white", bg="black")
 		bottom_label.config(font=("Courier", 36, "bold"), fg="white", bg="black")
@@ -194,10 +194,10 @@ class Screen():
 
 
 		while True:
-			top_message_holder.set(self.top_message)
-			middle_message_holder.set(self.middle_message)
-			bottom_message_holder.set(self.bottom_message)
-
+			self.top_message_holder.set(self.top_message)
+			self.middle_message_holder.set(self.middle_message)
+			self.bottom_message_holder.set(self.bottom_message)
+			root.update()
 			sleep(0.2)
 
 
