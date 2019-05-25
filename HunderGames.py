@@ -200,7 +200,7 @@ class Screen():
 			while True:
 				self.top_message_holder.set(self.top_message)
 				self.middle_message_holder.set(self.middle_message)
-				if len(middle_message_holder.get()) > 6:
+				if len(self.middle_message_holder.get()) > 6:
 					middle_label.config(font=("Courier", 36, "bold"))
 				else:
 					middle_label.config(font=("Courier", 150, "bold"))	
