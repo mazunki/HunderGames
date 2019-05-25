@@ -3,6 +3,7 @@ from time import sleep
 from random import randint
 import signal
 import threading
+import tkinter
 
 def close_program(signal, frame):
 	global smashers
@@ -161,6 +162,28 @@ class Screen():
 				mode = IDLE_MODE
 
 	def print_to_screen(self):
+		class HunderGamesWindow(object):
+			def __init__(app, master):
+				app.master = master
+				app.fallback_geometry = "480x260"
+				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
+				master.bind("<Escape>", unfullscreen)
+
+			def unfullscreen(app, event):
+				app.geometry(app.fallback_geometry)
+
+		root = tkinter.Tk()
+		window = HunderGamesWindow(root)
+
+		top_label = tkinter.Label(window, text="Hey")
+		middle_label = tkinter.Label(window, text="Ho")
+		bottom_label = tkinter.Label(window, text="Heyyy")
+
+		top_label.pack()
+		middle_label.pack()
+		bottom_label.pack()
+
+
 		while True:
 			print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
 				self.top_message,
