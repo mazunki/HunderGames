@@ -138,8 +138,7 @@ class LightButton():
 		GPIO.output(self.led, GPIO.HIGH)
 		self.lit = True
 		GPIO.output(self.led, GPIO.LOW)
-		self.lit = Fals
-	e
+		self.lit = False
 
 	def pressed_status(self):
 		return GPIO.input(self.button)
