@@ -181,7 +181,6 @@ class Screen():
 		top_label.pack()
 		middle_label.pack()
 		bottom_label.pack()
-		window.update()
 		root.mainloop()
 
 
