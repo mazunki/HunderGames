@@ -96,6 +96,7 @@ class Screen():
 									while smasher.pressed_status():
 										pass
 									else:
+										sleep(0.2)
 										break
 								elif smasher.pressed_status() and not found_target:
 									while smasher.pressed_status():
