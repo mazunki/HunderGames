@@ -178,13 +178,13 @@ class Screen():
 		top_label = Label(window, text="Hey")
 		middle_label = Label(window, text="Ho")
 		bottom_label = Label(window, text="Heyyy")
-		top_label.pack()
-		middle_label.pack()
-		bottom_label.pack()
+		top_label.grid()
+		middle_label.grid()
+		bottom_label.grid()
 		window.mainloop()
 
 
-		while False:
+		while True:
 			print("\033[2J{:^16}\n{:^16}\n{:^16}".format(
 				self.top_message,
 				self.middle_message,
