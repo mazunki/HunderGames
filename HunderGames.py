@@ -199,7 +199,7 @@ class Screen():
 				self.top_message_holder.set(self.top_message)
 				self.middle_message_holder.set(self.middle_message)
 				if mode in [GAME_OVER_MODE]:
-					self.middle_label.config(font=("Courier", 36, "bold")
+					self.middle_label.config(font=("Courier", 36, "bold"))
 				else:
 					self.middle_label.config(font=("Courier", 150, "bold")	
 				self.bottom_message_holder.set(self.bottom_message)
