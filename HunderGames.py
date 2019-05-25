@@ -190,16 +190,19 @@ class Screen():
 		top_label.pack(expand=True)
 		middle_label.pack(expand=True)
 		bottom_label.pack(expand=True)
+		
+		def update_labels():
+			while True:
+				self.top_message_holder.set(self.top_message)
+				self.middle_message_holder.set(self.middle_message)
+				self.bottom_message_holder.set(self.bottom_message)
+		updater = threading.Thread(target=update_labels)
+		updater.daemon = True
+		updater.start()
+
 		root.mainloop()
 
 
-		while True:
-			self.top_message_holder.set(self.top_message)
-			self.middle_message_holder.set(self.middle_message)
-			self.bottom_message_holder.set(self.bottom_message)
-			root.update_idletasks()
-			root.update()
-			
 
 
 
