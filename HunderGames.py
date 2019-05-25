@@ -170,6 +170,8 @@ class Screen():
 				master.geometry("{}x{}".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 				master.bind("<Escape>", app.unfullscreen)
 
+				root.attributes("-fullscreen", True)
+
 			def unfullscreen(app, event):
 				app.geometry(app.fallback_geometry)
 
@@ -190,7 +192,7 @@ class Screen():
 		top_label.pack(expand=True)
 		middle_label.pack(expand=True)
 		bottom_label.pack(expand=True)
-		
+
 		def update_labels():
 			while True:
 				self.top_message_holder.set(self.top_message)
