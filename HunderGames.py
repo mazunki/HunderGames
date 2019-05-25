@@ -178,9 +178,9 @@ class Screen():
 		top_label = Button(window, text="Hey")
 		middle_label = Button(window, text="Ho")
 		bottom_label = Button(window, text="Heyyy")
-		top_label.grid()
-		middle_label.grid()
-		bottom_label.grid()
+		top_label.pack()
+		middle_label.pack()
+		bottom_label.pack()
 		window.update()
 		root.mainloop()
 
