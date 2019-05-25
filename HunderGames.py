@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from random import randint
 import signal
+import threading
 
 def close_program(signal, frame):
 	global smashers
@@ -167,7 +168,6 @@ class Screen():
 				self.bottom_message))
 			sleep(0.2)
 
-screen = Screen()
 
 
 # GPIO setup
@@ -219,7 +219,9 @@ def idle_modus():
 	screen.update_mode()
 
 if __name__ == '__main__':
-	import threading
+
+	screen = Screen()
+	
 	printer = threading.Thread(target=screen.print_to_screen)
 	printer.daemon = True
 	printer.start()
