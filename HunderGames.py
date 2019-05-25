@@ -2,14 +2,15 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
-BCM_PAIRS = [	(14,2),   # green
+BCM_PAIRS = [	
+				(25,27),  # top
+				(8,10),   # blue
+				(7,9)     # right
+				(14,2),   # green
 				(15,3),   # bottom
 				(18,4),   # yellow
 				(23,17),  # left
 				(24,22),  # red 
-				(25,27),  # top
-				(8,10),   # blue
-				(7,9)     # right
 			] # (led, button) BCM GPIO
 
 
@@ -42,11 +43,11 @@ for pair in BCM_PAIRS:
 frame = 0
 while True:
 	for smasher in smashers:
-		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
 		if smashers.index(smasher) == frame:
 			smasher.light()
 		else:
 			smasher.dark()
+		print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
 		print()
 	frame = (frame+1)%len(smashers)
 
