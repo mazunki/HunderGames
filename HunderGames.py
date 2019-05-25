@@ -53,6 +53,8 @@ class Screen():
 
 					if mode == IDLE_MODE:
 						sleep(1)
+					else:
+						break
 
 			elif mode == GET_READY_MODE:
 				self.top_message = "Get ready!"
