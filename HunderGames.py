@@ -162,7 +162,7 @@ class Screen():
 				mode = IDLE_MODE
 
 	def print_to_screen(self):
-		class HunderGamesWindow(Tk.Frame):
+		class HunderGamesWindow():
 			def __init__(app, master):
 				app.master = master
 				app.fallback_geometry = "480x260"
