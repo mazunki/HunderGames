@@ -32,6 +32,20 @@ class Screen():
 				self.middle_message = self.highscore
 				self.bottom_message = "Press a button to play!"
 
+			frame = 0
+			while True:
+				for smasher in smashers:
+					if smashers.index(smasher) == frame:
+						smasher.light()
+					else:
+						smasher.dark()
+
+					if smasher.pressed_status():
+						mode = GAME_MODE
+					# print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
+				frame = (frame+1)%len(smashers) # around the clock
+				# print()
+
 				for smasher in smashers:
 					if smasher.pressed_status():
 						mode = GET_READY_MODE
@@ -185,22 +199,6 @@ def idle_modus():
 
 	mode = IDLE_MODE
 	screen.update_mode()
-
-	frame = 0
-	while True:
-		for smasher in smashers:
-			if smashers.index(smasher) == frame:
-				smasher.light()
-			else:
-				smasher.dark()
-
-			if smasher.pressed_status():
-				mode = GAME_MODE
-			# print(smasher.button, smasher.pressed_status(), "\t", smasher.led, smasher.lit)
-		frame = (frame+1)%len(smashers) # around the clock
-		# print()
-
-		sleep(0.2)
 
 if __name__ == '__main__':
 	import threading
