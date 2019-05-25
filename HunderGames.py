@@ -18,6 +18,9 @@ GAME_OVER_RESULT_DURATION = 3
 class Screen():
 	def __init__(self):
 		self.highscore = BOOTUP_HIGHSCORE
+		self.top_message = ""
+		self.middle_message = "Booting up..."
+		self.bottom_message = ""
 
 	def update_mode(self):
 		global mode, smashers
