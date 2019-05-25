@@ -14,9 +14,9 @@ BCM_PAIRS = [	(14,2),   # green
 
 
 class LightButton():
-	def __init__(self, bcm_led, bcm_button):
-		self.led = bcm_led
+	def __init__(self, bcm_button, bcm_led):
 		self.button = bcm_button
+		self.led = bcm_led
 
 		GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 		GPIO.setup(self.led, GPIO.OUT)
