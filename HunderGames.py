@@ -162,7 +162,7 @@ class Screen():
 				mode = IDLE_MODE
 
 	def print_to_screen(self):
-		class HunderGamesWindow(Frame):
+		class HunderGamesWindow(tkinter.Frame):
 			def __init__(app, master):
 				app.master = master
 				app.fallback_geometry = "480x260"
@@ -173,7 +173,7 @@ class Screen():
 				app.geometry(app.fallback_geometry)
 
 		root = tkinter.Tk()
-		window = HunderGamesWindow(root)
+		window = HunderGamesWindow(master=root)
 
 		top_label = tkinter.Label(window, text="Hey")
 		middle_label = tkinter.Label(window, text="Ho")
