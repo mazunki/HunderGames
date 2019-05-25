@@ -108,11 +108,14 @@ class Screen():
 							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
 								self.current_score += 1
 								found_target = True
-								sleep(0.5)
+								sleep(0.2)
 								break
 							elif smashers.index(smasher) == smasher_aim and smasher.pressed_status():
-								self.current_score -= 1
-								sleep(0.5)
+								while smasher.pressed_status():
+									pass
+								else:
+									self.current_score -= 1
+									#sleep(0.5)
 
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
