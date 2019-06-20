@@ -1,4 +1,5 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
+import keyboard
 from time import sleep
 from random import randint
 import signal
@@ -96,13 +97,15 @@ class Screen():
 				mode = GAME_MODE
 
 			elif mode == GAME_MODE:
-				global smashers
+#				global smashers
 				self.current_score = 0
 				self.time_left = GAME_DURATION
 				def metronome():
-					while True:
+					while self.time_left >= 0:
 						self.time_left -= 1
 						sleep(1)
+					else:
+						return
 				counter = threading.Thread(target=metronome)
 				counter.daemon = True
 				counter.start()
@@ -216,7 +219,7 @@ class Screen():
 
 
 # GPIO setup
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
 BCM_PAIRS = [	
 				(25,22),  # top
 				(8,10),   # blue
@@ -235,20 +238,21 @@ class LightButton():
 		self.button = bcm_button
 		self.led = bcm_led
 
-		GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-		GPIO.setup(self.led, GPIO.OUT)
+		#GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+		#GPIO.setup(self.led, GPIO.OUT)
 
 		self.lit = False
 
 	def light(self):
-		GPIO.output(self.led, GPIO.HIGH)
+		#GPIO.output(self.led, GPIO.HIGH)
 		self.lit = True
 	def dark(self):
-		GPIO.output(self.led, GPIO.LOW)
+		#GPIO.output(self.led, GPIO.LOW)
 		self.lit = False
 
 	def pressed_status(self):
-		return GPIO.input(self.button)
+		return keyboard.is_pressed("x")
+		return #GPIO.input(self.button)
 
 # Add buttons to a list
 smashers = list()
