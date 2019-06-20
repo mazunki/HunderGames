@@ -112,6 +112,7 @@ class Screen():
 				while mode == GAME_MODE:
 
 					smasher_aim = randint(0, len(smashers)-1)
+					#print(smashers)
 					for smasher in smashers:
 						if smashers.index(smasher) == smasher_aim:
 							smasher.light()
@@ -119,23 +120,21 @@ class Screen():
 							smasher.dark()
 
 					found_target = False
-					while self.time_left >= 0 and found_target == False:
+					while self.time_left >= 0 and not found_target:
 						self.top_message = "Score"
-						self.middle_message = self.current_score
+						self.middle_message = [smasher.led[0] for smasher in smashers if smashers.index(smasher)==smasher_aim][0] + str(self.current_score)
 						self.bottom_message  = str(self.time_left)+"s left"
 						
 						for smasher in smashers:
-							if smashers.index(smasher) == smasher_aim and smasher.pressed_status():
-								self.current_score += 1
-								found_target = True
-								sleep(0.2)
-								break
-							elif smashers.index(smasher) != smasher_aim and smasher.pressed_status():
-								while smasher.pressed_status():
-									pass
-								else:
-									self.current_score -= 1
-									sleep(0.3)
+							if smasher.last_state != smasher.pressed_status():
+								if smasher.pressed_status():
+									if smashers.index(smasher) == smasher_aim:
+										self.current_score += 1
+										found_target = True
+									else:
+										self.current_score -= 1
+									self.middle_message = str(self.current_score)  # for quick updating									
+								smasher.last_state = not smasher.last_state
 
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
@@ -221,14 +220,14 @@ class Screen():
 # GPIO setup
 #GPIO.setmode(GPIO.BCM)
 BCM_PAIRS = [	
-				(25,22),  # top
-				(8,10),   # blue
-				(7,9),     # right
-				(14,2),   # green
-				(15,3),   # bottom
-				(18,4),   # yellow
-				(23,17),  # left
-				(24,27)  # red 
+				("q","q"),  # top
+				("w","w"),   # blue
+				("e","e"),     # right
+				("r","r"),   # green
+				("a","a"),   # bottom
+				("s","s"),   # yellow
+				("d","d"),  # left
+				("f","f")  # red 
 			] # (led, button) BCM GPIO
 
 
@@ -242,6 +241,7 @@ class LightButton():
 		#GPIO.setup(self.led, GPIO.OUT)
 
 		self.lit = False
+		self.last_state = self.pressed_status()
 
 	def light(self):
 		#GPIO.output(self.led, GPIO.HIGH)
@@ -251,7 +251,7 @@ class LightButton():
 		self.lit = False
 
 	def pressed_status(self):
-		return keyboard.is_pressed("x")
+		return keyboard.is_pressed(self.button)
 		return #GPIO.input(self.button)
 
 # Add buttons to a list
