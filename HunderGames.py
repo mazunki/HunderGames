@@ -1,5 +1,5 @@
-#import RPi.GPIO as GPIO
-import keyboard
+import RPi.GPIO as GPIO
+#import keyboard
 from time import sleep
 from random import randint
 import signal
@@ -218,17 +218,17 @@ class Screen():
 
 
 # GPIO setup
-#GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 BCM_PAIRS = [	
-				("q","q"),  # top
-				("w","w"),   # blue
-				("e","e"),     # right
-				("r","r"),   # green
-				("a","a"),   # bottom
-				("s","s"),   # yellow
-				("d","d"),  # left
-				("f","f")  # red 
-			] # (led, button) BCM GPIO
+				(25,22),  # top
+				(8,10),   # blue
+				(7,9),     # right
+				(14,2),   # green
+				(15,3),   # bottom
+				(18,4),   # yellow
+				(23,17),  # left
+				(24,27)  # red 
+] # (led, button) BCM GPIO
 
 
 # Hardware interaction
@@ -237,22 +237,22 @@ class LightButton():
 		self.button = bcm_button
 		self.led = bcm_led
 
-		#GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-		#GPIO.setup(self.led, GPIO.OUT)
+		GPIO.setup(self.button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+		GPIO.setup(self.led, GPIO.OUT)
 
 		self.lit = False
 		self.last_state = self.pressed_status()
 
 	def light(self):
-		#GPIO.output(self.led, GPIO.HIGH)
+		GPIO.output(self.led, GPIO.HIGH)
 		self.lit = True
 	def dark(self):
-		#GPIO.output(self.led, GPIO.LOW)
+		GPIO.output(self.led, GPIO.LOW)
 		self.lit = False
 
 	def pressed_status(self):
-		return keyboard.is_pressed(self.button)
-		return #GPIO.input(self.button)
+		#return keyboard.is_pressed(self.button)
+		return GPIO.input(self.button)
 
 # Add buttons to a list
 smashers = list()
