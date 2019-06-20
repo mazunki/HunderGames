@@ -122,7 +122,7 @@ class Screen():
 					found_target = False
 					while self.time_left >= 0 and not found_target:
 						self.top_message = "Score"
-						self.middle_message = [smasher.led[0] for smasher in smashers if smashers.index(smasher)==smasher_aim][0] + str(self.current_score)
+						self.middle_message = str(self.current_score)
 						self.bottom_message  = str(self.time_left)+"s left"
 						
 						for smasher in smashers:
