@@ -139,8 +139,8 @@ class Screen():
                                                                         smasher.last_state = True
                                                                 else:
                                                                     if smasher.can_turn_off:
-                                                                        smasher.last_state = False
                                                                         smasher.can_turn_off = False
+                                                                    smasher.last_state = False
                                         if self.time_left < 0:
                                                 mode = GAME_OVER_MODE
 
@@ -261,7 +261,8 @@ class LightButton():
                 return GPIO.input(self.button)
 
         def safe_zone(self):
-            sleep(0.5)
+            while not self.lit:
+                sleep(0.1)
             self.can_turn_off = True
 
 # Add buttons to a list
