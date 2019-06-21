@@ -136,10 +136,7 @@ class Screen():
 									self.middle_message = str(self.current_score)  # for quick updating									
 									smasher.last_state = True
 								if not smasher.pressed_status():	
-									def set_off(smasher):
-										sleep(0.1) # 100 ms to count as miss
-										smasher.set_off = False
-									killer = threading.Thread(target=set_off, args=(smasher,))
+									killer = threading.Thread(target=smasher.set_off)
 									killer.start()
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
@@ -225,14 +222,14 @@ class Screen():
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 BCM_PAIRS = [	
-				(25,22),  # top
-				(8,10),   # blue
-				(7,9),     # right
-				(14,2),   # green
-				(15,3),   # bottom
-				(18,4),   # yellow
-				(23,17),  # left
-				(24,27)  # red 
+	(25,22),  # top
+	(8,10),   # blue
+	(7,9),     # right
+	(14,2),   # green
+	(15,3),   # bottom
+	(18,4),   # yellow
+	(23,17),  # left
+	(24,27)  # red 
 ] # (led, button) BCM GPIO
 
 
@@ -258,6 +255,10 @@ class LightButton():
 	def pressed_status(self):
 		#return keyboard.is_pressed(self.button)
 		return GPIO.input(self.button)
+
+        def set_off(self):
+            sleep(0.1)
+            self.last_state = False
 
 # Add buttons to a list
 smashers = list()
