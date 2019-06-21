@@ -257,7 +257,7 @@ class LightButton():
                 return GPIO.input(self.button)
 
         def set_off(self):
-            sleep(0.1)
+            sleep(0.2)
             self.last_state = False
 
 # Add buttons to a list
