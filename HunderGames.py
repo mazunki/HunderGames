@@ -33,7 +33,7 @@ class Screen():
         def __init__(self):
                 self.highscore = BOOTUP_HIGHSCORE
                 self.top_message = ""
-                self.middle_message = "Booting up..."
+                self.middle_message = "Boting up..."
                 self.bottom_message = ""
 
         def update_mode(self):
@@ -112,7 +112,6 @@ class Screen():
                                 while mode == GAME_MODE:
 
                                         smasher_aim = randint(0, len(smashers)-1)
-                                        #print(smashers)
                                         for smasher in smashers:
                                                 if smashers.index(smasher) == smasher_aim:
                                                         smasher.light()
@@ -126,21 +125,16 @@ class Screen():
                                                 self.bottom_message  = str(self.time_left)+"s left"
                                                 
                                                 for smasher in smashers:
-                                                        if smasher.last_state != smasher.pressed_status():
-                                                                if smasher.pressed_status():
+                                                        if smasher.has_changed and not found_target:
+                                                            smasher.has_changed = False    
+                                                            if smasher.last_state:
                                                                         if smashers.index(smasher) == smasher_aim:
                                                                                 self.current_score += 1
                                                                                 found_target = True
-                                                                                killer = threading.Thread(target=smasher.safe_zone)
-                                                                                killer.start()
                                                                         else:
                                                                                 self.current_score -= 1
                                                                         self.middle_message = str(self.current_score)  # for quick updating                                                                     
-                                                                        smasher.last_state = True
-                                                                else:
-                                                                    if smasher.can_turn_off:
-                                                                        smasher.can_turn_off = False
-                                                                    smasher.last_state = False
+                                        
                                         if self.time_left < 0:
                                                 mode = GAME_OVER_MODE
 
@@ -247,7 +241,10 @@ class LightButton():
 
                 self.lit = False
                 self.last_state = self.pressed_status()
-                self.can_turn_off = False
+                self.has_changed = False
+                
+                self.events = threading.Thread(target=self.event_listener)
+                self.events.start()
 
         def light(self):
                 GPIO.output(self.led, GPIO.HIGH)
@@ -260,17 +257,17 @@ class LightButton():
                 #return keyboard.is_pressed(self.button)
                 return GPIO.input(self.button)
 
-        def safe_zone(self):
-            while not self.lit:
-                sleep(0.1)
-            self.can_turn_off = True
+        def event_listener(self):
+            while True:
+                if self.last_state != self.pressed_status():
+                    self.has_changed = True
+                    self.last_state = self.pressed_status()
 
 # Add buttons to a list
 smashers = list()
 for pair in BCM_PAIRS:
         logical_pair = LightButton(*pair)
         smashers.append(logical_pair)
-
 
 def idle_modus():
         global screen, mode
