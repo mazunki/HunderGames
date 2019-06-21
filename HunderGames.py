@@ -30,124 +30,124 @@ DELAY_GET_READY = 1.5 # seconds
 
 # User display
 class Screen():
-		def __init__(self):
-			self.highscore = BOOTUP_HIGHSCORE
-			self.top_message = ""
-			self.middle_message = "Boting up..."
-			self.bottom_message = ""
+	def __init__(self):
+		self.highscore = BOOTUP_HIGHSCORE
+		self.top_message = ""
+		self.middle_message = "Boting up..."
+		self.bottom_message = ""
 
-		def update_mode(self):
-			global mode, smashers
+	def update_mode(self):
+		global mode, smashers
 
-			while True:
-	        		if mode == IDLE_MODE:
+		while True:
+        		if mode == IDLE_MODE:
 					self.top_message = "Highscore"
-					self.middle_message = self.highscore
-					if self.middle_message == -1:
-						self.middle_message = "Empty!"
-						self.bottom_message = "Press a button to play!"
+				self.middle_message = self.highscore
+				if self.middle_message == -1:
+					self.middle_message = "Empty!"
+					self.bottom_message = "Press a button to play!"
 
-					frame = 0
-					while True:
-						for smasher in smashers:
-							if smashers.index(smasher) == frame:
-								smasher.light()
-							else:
-								smasher.dark()
-							frame = (frame+1)%len(smashers) # around the clock
-							sleep(1)
-							for smasher_ in smashers:
-	        						if smasher_.pressed_status():
-									mode = GAME_MODE
+				frame = 0
+				while True:
+					for smasher in smashers:
+						if smashers.index(smasher) == frame:
+							smasher.light()
+						else:
+							smasher.dark()
+						frame = (frame+1)%len(smashers) # around the clock
+						sleep(1)
+						for smasher_ in smashers:
+        						if smasher_.pressed_status():
+								mode = GAME_MODE
 
-				elif mode == GET_READY_MODE:
-					self.top_message = "Get ready!"
-					self.middle_message = "3"
-					self.bottom_message = ""
-					sleep(DELAY_GET_READY)
+			elif mode == GET_READY_MODE:
+				self.top_message = "Get ready!"
+				self.middle_message = "3"
+				self.bottom_message = ""
+				sleep(DELAY_GET_READY)
 
-					self.top_message = "Press the buttons"
-					self.middle_message = "2"
-					self.bottom_message = "as they're lit"
-					sleep(DELAY_GET_READY)
+				self.top_message = "Press the buttons"
+				self.middle_message = "2"
+				self.bottom_message = "as they're lit"
+				sleep(DELAY_GET_READY)
 
-					self.top_message = "And don't hit"
-					self.middle_message = "1"
-					self.bottom_message = "wrong ones!"
-					sleep(DELAY_GET_READY)
+				self.top_message = "And don't hit"
+				self.middle_message = "1"
+				self.bottom_message = "wrong ones!"
+				sleep(DELAY_GET_READY)
 
-					self.top_message = "Go!"
-					self.middle_message = "0"
-					self.bottom_message = ""
-					sleep(DELAY_GET_READY/2)
+				self.top_message = "Go!"
+				self.middle_message = "0"
+				self.bottom_message = ""
+				sleep(DELAY_GET_READY/2)
 
-					mode = GAME_MODE
+				mode = GAME_MODE
 
-				elif mode == GAME_MODE:
-					self.current_score = 0
-					self.time_left = GAME_DURATION
-					def metronome():
-						while self.time_left >= 0:
-							self.time_left -= 1
-							sleep(1)
-					counter = threading.Thread(target=metronome)
-					counter.daemon = True
-					counter.start()
+			elif mode == GAME_MODE:
+				self.current_score = 0
+				self.time_left = GAME_DURATION
+				def metronome():
+					while self.time_left >= 0:
+						self.time_left -= 1
+						sleep(1)
+				counter = threading.Thread(target=metronome)
+				counter.daemon = True
+				counter.start()
 
-					while mode == GAME_MODE:
-						smasher_aim = randint(0, len(smashers)-1)
-						for smasher in smashers:
-							if smashers.index(smasher) == smasher_aim:
-								smasher.light()
-							else:
-								smasher.dark()
+				while mode == GAME_MODE:
+					smasher_aim = randint(0, len(smashers)-1)
+					for smasher in smashers:
+						if smashers.index(smasher) == smasher_aim:
+							smasher.light()
+						else:
+							smasher.dark()
 
-						found_target = False
-						while self.time_left >= 0 and not found_target:
-							self.top_message = "Score"
-							self.middle_message = str(self.current_score)
-							self.bottom_message  = str(self.time_left)+"s left"
+					found_target = False
+					while self.time_left >= 0 and not found_target:
+						self.top_message = "Score"
+						self.middle_message = str(self.current_score)
+						self.bottom_message  = str(self.time_left)+"s left"
 
-						for smasher in smashers:
-							if smasher.has_changed and not found_target:
-								smasher.has_changed = False
-								if smasher.last_state:
-									if smashers.index(smasher) == smasher_aim:
-										self.current_score += 1
-										found_target = True
-									else:
-										self.current_score -= 1
-									
-									if self.time_left < 0:
-										mode = GAME_OVER_MODE
+					for smasher in smashers:
+						if smasher.has_changed and not found_target:
+							smasher.has_changed = False
+							if smasher.last_state:
+								if smashers.index(smasher) == smasher_aim:
+									self.current_score += 1
+									found_target = True
+								else:
+									self.current_score -= 1
+								
+								if self.time_left < 0:
+									mode = GAME_OVER_MODE
 
-							self.middle_message = str(self.current_score)  # for quick updating 
+						self.middle_message = str(self.current_score)  # for quick updating 
 
-				elif mode == GAME_OVER_MODE:
-					self.top_message = "Time's up!"
-					self.middle_message = self.current_score
-					self.bottom_message = "total score"
-					sleep(GAME_OVER_SCORE_DURATION)
+			elif mode == GAME_OVER_MODE:
+				self.top_message = "Time's up!"
+				self.middle_message = self.current_score
+				self.bottom_message = "total score"
+				sleep(GAME_OVER_SCORE_DURATION)
 
-					if self.current_score > self.highscore:
-						self.highscore = self.current_score
+				if self.current_score > self.highscore:
+					self.highscore = self.current_score
 
-						self.top_message = "Congratulations!"
-						self.middle_message = "New highscore: "
-						self.bottom_message = self.current_score
+					self.top_message = "Congratulations!"
+					self.middle_message = "New highscore: "
+					self.bottom_message = self.current_score
 
-					elif self.current_score < self.highscore:
-						self.top_message = "Aww..."
-						self.middle_message = "better luck"
-						self.bottom_message = "next time"
+				elif self.current_score < self.highscore:
+					self.top_message = "Aww..."
+					self.middle_message = "better luck"
+					self.bottom_message = "next time"
 
-					else:
-						self.top_message = "It's a tie!"
-						self.middle_message = "You almost won!"
-						self.bottom_message = "Try again?"
+				else:
+					self.top_message = "It's a tie!"
+					self.middle_message = "You almost won!"
+					self.bottom_message = "Try again?"
 
-					sleep(GAME_OVER_RESULT_DURATION)
-					mode = IDLE_MODE
+				sleep(GAME_OVER_RESULT_DURATION)
+				mode = IDLE_MODE
 
 	def print_to_screen(self):
 		class HunderGamesWindow(Frame):
