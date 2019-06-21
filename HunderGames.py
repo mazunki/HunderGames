@@ -55,9 +55,9 @@ class Screen():
 						else:
 							smasher.dark()
 
-						for smasher_ in smashers:
-							if smasher_.pressed_status():
-								mode = GAME_MODE
+					for smasher_ in smashers:
+						if smasher_.pressed_status():
+							mode = GAME_MODE
 					frame = (frame+1)%len(smashers) # around the clock
 					sleep(1)
 
