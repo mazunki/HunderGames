@@ -260,7 +260,7 @@ class LightButton():
                 #return keyboard.is_pressed(self.button)
                 return GPIO.input(self.button)
 
-        def set_off(self):
+        def safe_zone(self):
             sleep(0.2)
             self.can_turn_off = True
 
