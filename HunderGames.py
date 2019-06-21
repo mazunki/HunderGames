@@ -40,7 +40,7 @@ class Screen():
 		global mode, smashers
 
 		while True:
-        		if mode == IDLE_MODE:
+		if mode == IDLE_MODE:
 				self.top_message = "Highscore"
 				self.middle_message = self.highscore
 				if self.middle_message == -1:
@@ -57,7 +57,7 @@ class Screen():
 						frame = (frame+1)%len(smashers) # around the clock
 						sleep(1)
 						for smasher_ in smashers:
-        						if smasher_.pressed_status():
+							if smasher_.pressed_status():
 								mode = GAME_MODE
 
 			elif mode == GET_READY_MODE:
