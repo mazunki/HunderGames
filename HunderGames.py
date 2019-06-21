@@ -36,6 +36,7 @@ class Screen():
 		self.middle_message = "Boting up..."
 		self.bottom_message = ""
 
+
 	def update_mode(self):
 		global mode, smashers
 
@@ -48,7 +49,7 @@ class Screen():
 					self.bottom_message = "Press a button to play!"
 
 				frame = 0
-				while True:
+				while mode == IDLE_MODE:
 					for smasher in smashers:
 						if smashers.index(smasher) == frame:
 							smasher.light()
