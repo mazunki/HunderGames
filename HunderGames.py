@@ -54,11 +54,12 @@ class Screen():
 							smasher.light()
 						else:
 							smasher.dark()
-						frame = (frame+1)%len(smashers) # around the clock
-						sleep(1)
+
 						for smasher_ in smashers:
 							if smasher_.pressed_status():
 								mode = GAME_MODE
+					frame = (frame+1)%len(smashers) # around the clock
+					sleep(1)
 
 			elif mode == GET_READY_MODE:
 				self.top_message = "Get ready!"
