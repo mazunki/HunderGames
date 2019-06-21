@@ -134,8 +134,13 @@ class Screen():
 									else:
 										self.current_score -= 1
 									self.middle_message = str(self.current_score)  # for quick updating									
-								smasher.last_state = not smasher.last_state
-
+									smasher.last_state = True
+								if not smasher.pressed_status():	
+									def set_off(smasher):
+										sleep(0.1) # 100 ms to count as miss
+										smasher.set_off = False
+									killer = threading.Thread(target=set_off, args=(smasher,))
+									killer.start()
 					if self.time_left < 0:
 						mode = GAME_OVER_MODE
 
