@@ -131,13 +131,16 @@ class Screen():
                                                                         if smashers.index(smasher) == smasher_aim:
                                                                                 self.current_score += 1
                                                                                 found_target = True
+                                                                                killer = threading.Thread(target=smasher.safe_zone)
+                                                                                killer.start()
                                                                         else:
                                                                                 self.current_score -= 1
                                                                         self.middle_message = str(self.current_score)  # for quick updating                                                                     
                                                                         smasher.last_state = True
-                                                                if not smasher.pressed_status():        
-                                                                        killer = threading.Thread(target=smasher.set_off)
-                                                                        killer.start()
+                                                                else:
+                                                                    if smasher.can_turn_off:
+                                                                        smasher.last_state = False
+                                                                        smasher.can_turn_off = False
                                         if self.time_left < 0:
                                                 mode = GAME_OVER_MODE
 
@@ -244,6 +247,7 @@ class LightButton():
 
                 self.lit = False
                 self.last_state = self.pressed_status()
+                self.can_turn_off = False
 
         def light(self):
                 GPIO.output(self.led, GPIO.HIGH)
@@ -258,7 +262,7 @@ class LightButton():
 
         def set_off(self):
             sleep(0.2)
-            self.last_state = False
+            self.can_turn_off = True
 
 # Add buttons to a list
 smashers = list()
