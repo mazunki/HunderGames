@@ -108,18 +108,20 @@ class Screen():
 						self.middle_message = str(self.current_score)
 						self.bottom_message  = str(self.time_left)+"s left"
 
-					for smasher in smashers:
-						if smasher.has_changed and not found_target:
-							smasher.has_changed = False
-							if smasher.last_state:
-								if smashers.index(smasher) == smasher_aim:
-									self.current_score += 1
-									found_target = True
-								else:
-									self.current_score -= 1
-								
-								if self.time_left < 0:
-									mode = GAME_OVER_MODE
+						for smasher in smashers:
+							if smasher.has_changed and not found_target:
+								smasher.has_changed = False
+								if smasher.last_state:
+									if smashers.index(smasher) == smasher_aim:
+										self.current_score += 1
+										found_target = True
+									else:
+										self.current_score -= 1
+									while smasher.pressed_status():
+										pass
+
+						if self.time_left < 0:
+							mode = GAME_OVER_MODE
 
 						self.middle_message = str(self.current_score)  # for quick updating 
 
