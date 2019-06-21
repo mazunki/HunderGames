@@ -261,7 +261,7 @@ class LightButton():
                 return GPIO.input(self.button)
 
         def safe_zone(self):
-            sleep(0.2)
+            sleep(0.5)
             self.can_turn_off = True
 
 # Add buttons to a list
