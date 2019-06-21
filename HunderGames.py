@@ -40,7 +40,7 @@ class Screen():
 		global mode, smashers
 
 		while True:
-		if mode == IDLE_MODE:
+			if mode == IDLE_MODE:
 				self.top_message = "Highscore"
 				self.middle_message = self.highscore
 				if self.middle_message == -1:
